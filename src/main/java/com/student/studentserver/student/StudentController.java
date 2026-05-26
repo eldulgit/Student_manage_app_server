@@ -1,7 +1,5 @@
-package com.student.studentserver.controller;
+package com.student.studentserver.student;
 
-import com.student.studentserver.dto.StudentDto;
-import com.student.studentserver.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

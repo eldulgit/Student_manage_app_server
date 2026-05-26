@@ -1,6 +1,5 @@
-package com.student.studentserver.repository;
+package com.student.studentserver.student;
 
-import com.student.studentserver.dto.StudentDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

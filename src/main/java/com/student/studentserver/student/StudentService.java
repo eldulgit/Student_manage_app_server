@@ -1,7 +1,5 @@
-package com.student.studentserver.service;
+package com.student.studentserver.student;
 
-import com.student.studentserver.dto.StudentDto;
-import com.student.studentserver.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

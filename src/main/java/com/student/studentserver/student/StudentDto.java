@@ -1,4 +1,4 @@
-package com.student.studentserver.dto;
+package com.student.studentserver.student;
 
 // Android랑 주고받을 학생 데이터 모양
 public class StudentDto {
@@ -6,9 +6,6 @@ public class StudentDto {
     private String name;
     private String gender;
     private String memo;
-    private String attendanceStatus;
-    private String praise;
-    private int praiseScore;
 
     public StudentDto() {
     }
@@ -51,27 +48,4 @@ public class StudentDto {
         this.memo = memo;
     }
 
-    public String getAttendanceStatus() {
-        return attendanceStatus;
-    }
-
-    public void setAttendanceStatus(String attendanceStatus) {
-        this.attendanceStatus = attendanceStatus;
-    }
-
-    public String getPraise() {
-        return praise;
-    }
-
-    public void setPraise(String praise) {
-        this.praise = praise;
-    }
-
-    public int getPraiseScore() {
-        return praiseScore;
-    }
-
-    public void setPraiseScore(int praiseScore) {
-        this.praiseScore = praiseScore;
-    }
 }
