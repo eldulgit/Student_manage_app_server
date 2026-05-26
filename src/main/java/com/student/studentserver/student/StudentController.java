@@ -14,7 +14,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/students")
+    @GetMapping("/students") //조회
     public List<StudentDto> findAllStudent() {
 
         return studentService.findAllStudent();
@@ -37,7 +37,7 @@ public class StudentController {
         return student;
     }
 
-    @DeleteMapping("/students/{id}")
+    @DeleteMapping("/students/{id}") //삭제
     public void deleteStudent(@PathVariable int id){
         studentService.deleteStudent(id);
     }
