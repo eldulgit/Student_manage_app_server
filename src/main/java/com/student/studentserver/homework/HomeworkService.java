@@ -19,6 +19,7 @@ public class HomeworkService {
     public void save(HomeworkDto homeworkDto){
         homeworkRepository.save(homeworkDto);
     }
+
     public List<HomeworkResponseDto> findAll(){
         List<HomeworkDto> homeworkDtoList = homeworkRepository.findAll();
         List<HomeworkResponseDto> result = new ArrayList<>();
