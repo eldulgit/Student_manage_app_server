@@ -1,12 +1,13 @@
 package com.student.studentserver.activitycheck;
 
-public class ActivityCheckDto {
+public class ActivityCheckResponseDto {
     private int studentId;
+    private String name;
     private String activityName;
     private String activityScore;
     private String date;
 
-    public ActivityCheckDto() {
+    public ActivityCheckResponseDto() {
     }
 
     public int getStudentId() {
@@ -15,6 +16,14 @@ public class ActivityCheckDto {
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getActivityName() {
