@@ -21,6 +21,7 @@ public class PresentationService {
     public void save(PresentationDto presentationDto){
         presentationRepository.save(presentationDto);
     }
+
     public List<PresentationResponseDto> findAll(){
         Map<Integer, PresentationDto> presentationDtoMap = presentationRepository.findAll();
         List<PresentationResponseDto> result = new ArrayList<>();
