@@ -1,19 +1,19 @@
-package com.student.studentserver.homework;
+package com.student.studentserver.activitycheck;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "homeworks")
-public class HomeworkEntity {
+@Table(name = "activityChecks")
+public class ActivityCheckEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int studentId;
-    private String homeworkName;
-    private String homeworkScore;
+    private String activityName;
+    private String activityScore;
     private String date;
 
-    public HomeworkEntity() {
+    public ActivityCheckEntity() {
     }
 
     public Long getId() {
@@ -32,20 +32,20 @@ public class HomeworkEntity {
         this.studentId = studentId;
     }
 
-    public String getHomeworkName() {
-        return homeworkName;
+    public String getActivityName() {
+        return activityName;
     }
 
-    public void setHomeworkName(String homeworkName) {
-        this.homeworkName = homeworkName;
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 
-    public String getHomeworkScore() {
-        return homeworkScore;
+    public String getActivityScore() {
+        return activityScore;
     }
 
-    public void setHomeworkScore(String homeworkScore) {
-        this.homeworkScore = homeworkScore;
+    public void setActivityScore(String activityScore) {
+        this.activityScore = activityScore;
     }
 
     public String getDate() {
