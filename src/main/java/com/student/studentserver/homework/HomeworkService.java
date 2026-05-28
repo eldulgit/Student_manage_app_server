@@ -31,6 +31,7 @@ public class HomeworkService {
             responseDto.setStudentId(homeworkDto.getStudentId());
             responseDto.setHomeworkName(homeworkDto.getHomeworkName());
             responseDto.setHomeworkScore(homeworkDto.getHomeworkScore());
+            responseDto.setHomeworkMemo(homeworkDto.getHomeworkMemo());
             responseDto.setDate(homeworkDto.getDate());
 
             if(studentDto != null){

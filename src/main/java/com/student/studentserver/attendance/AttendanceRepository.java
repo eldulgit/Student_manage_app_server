@@ -10,33 +10,73 @@ import java.util.Map;
 
 @Repository
 public class AttendanceRepository {
-    private Map<Integer, List<AttendanceRecordDto>> attendanceMap = new HashMap<>();
+    private final AttendanceJpaRepository attendanceJpaRepository;
+
+    public AttendanceRepository(AttendanceJpaRepository attendanceJpaRepository) {
+        this.attendanceJpaRepository = attendanceJpaRepository;
+    }
+
+    public AttendanceEntity toEntity(AttendanceRecordDto dto) {
+        AttendanceEntity entity = new AttendanceEntity();
+        entity.setStudentId(dto.getStudentId());
+        entity.setAttendanceStatus(dto.getAttendanceStatus());
+        entity.setDate(dto.getDate());
+        return entity;
+    }
+
+    public AttendanceRecordDto toDto(AttendanceEntity entity) {
+        AttendanceRecordDto dto = new AttendanceRecordDto();
+        dto.setStudentId(entity.getStudentId());
+        dto.setAttendanceStatus(entity.getAttendanceStatus());
+        dto.setDate(entity.getDate());
+        return dto;
+    }
 
     public void save(AttendanceRecordDto attendanceRecordDto) {
-        int studentId = attendanceRecordDto.getStudentId();
-        List<AttendanceRecordDto> records = attendanceMap.get(studentId);
-        if (records == null) {
-            records = new ArrayList<>();
-            attendanceMap.put(studentId, records);
+        AttendanceEntity existingAttendance = attendanceJpaRepository.findByStudentIdAndDate(
+                attendanceRecordDto.getStudentId(),
+                attendanceRecordDto.getDate()
+        ).orElse(null);
+        if(existingAttendance == null){
+            attendanceJpaRepository.save(toEntity(attendanceRecordDto));
+        }else{
+            existingAttendance.setAttendanceStatus(attendanceRecordDto.getAttendanceStatus());
+            attendanceJpaRepository.save(existingAttendance);
         }
-        records.add(attendanceRecordDto);
     }
 
-    public Map<Integer, List<AttendanceRecordDto>> findAll(){
-        return attendanceMap;
-    }
+    public Map<Integer, List<AttendanceRecordDto>> findAll() {
+        Map<Integer, List<AttendanceRecordDto>> result = new HashMap<>();
+        for (AttendanceEntity entity : attendanceJpaRepository.findAll()) {
+            AttendanceRecordDto dto = toDto(entity);
+            int studentId = dto.getStudentId();
 
-    public List<AttendanceRecordDto> findByMonthAndStatus(String month, String status){
-        List<AttendanceRecordDto> result = new ArrayList<>();
-        for (List<AttendanceRecordDto> records : attendanceMap.values()) {
-            for (AttendanceRecordDto record : records) {
-                boolean sameMonth = record.getDate().startsWith(month);
-                boolean sameStatus = status == null || record.getAttendanceStatus().equals(status);
-
-                if(sameMonth && sameStatus){
-                    result.add(record);
-                }
+            List<AttendanceRecordDto> records = result.get(studentId);
+            if (records == null) {
+                records = new ArrayList<>();
+                result.put(studentId, records);
             }
-        }return result;
+            records.add(dto);
+        }
+        return result;
+    }
+
+    public List<AttendanceRecordDto> findByMonthAndStatus(String month, String status) {
+        List<AttendanceRecordDto> result = new ArrayList<>();
+        for (AttendanceEntity entity : attendanceJpaRepository.findAll()) {
+            AttendanceRecordDto record = toDto(entity);
+            boolean sameMonth = record.getDate().startsWith(month);
+            boolean sameStatus = status == null || record.getAttendanceStatus().equals(status);
+
+            if (sameMonth && sameStatus) {
+                result.add(record);
+            }
+
+        }
+        return result;
+    }
+
+    public void deleteByDate(String date) {
+        attendanceJpaRepository.deleteByDate(date);
     }
 }

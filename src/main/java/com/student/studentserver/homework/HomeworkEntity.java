@@ -11,6 +11,7 @@ public class HomeworkEntity {
     private int studentId;
     private String homeworkName;
     private String homeworkScore;
+    private String homeworkMemo;
     private String date;
 
     public HomeworkEntity() {
@@ -46,6 +47,14 @@ public class HomeworkEntity {
 
     public void setHomeworkScore(String homeworkScore) {
         this.homeworkScore = homeworkScore;
+    }
+
+    public String getHomeworkMemo() {
+        return homeworkMemo;
+    }
+
+    public void setHomeworkMemo(String homeworkMemo) {
+        this.homeworkMemo = homeworkMemo;
     }
 
     public String getDate() {

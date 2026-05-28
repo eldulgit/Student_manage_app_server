@@ -2,6 +2,7 @@ package com.student.studentserver.attendance;
 
 import com.student.studentserver.student.StudentDto;
 import com.student.studentserver.student.StudentRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -69,6 +70,11 @@ public class AttendanceService {
             result.add(responseDto);
         }
         return result;
+    }
+
+    @Transactional
+    public void deleteByDate(String date) {
+        attendanceRepository.deleteByDate(date);
     }
 
 }

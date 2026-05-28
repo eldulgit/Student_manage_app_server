@@ -27,4 +27,9 @@ public class AttendanceController {
     public AttendanceResponseDto saveAttendance(@RequestBody AttendanceRecordDto attendanceRecordDto){
         return attendanceService.saveAttendance(attendanceRecordDto);
     }
+
+    @DeleteMapping("/attendance")
+    public void deleteByDate(@RequestParam String date) {
+        attendanceService.deleteByDate(date);
+    }
 }
